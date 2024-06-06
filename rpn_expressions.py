@@ -1,29 +1,46 @@
-from typing import Any
+from typing import Any, List, Union
+
+RPN_Expression = ["4","13","5","/","+"]
+
+operators = {
+    '+': lambda y, x: x + y,
+    '-': lambda y, x: x - y,
+    '*': lambda y, x: x * y,
+    '/': lambda y, x: int(x / y)  # Ensure integer division
+}
+
+def rpn_solver(rpn_expression: List[Union[int, str]]) -> int:
+    # data = []
+    # for n in rpn_expression:
+    #     if  (isinstance(n, str) and n.lstrip('-').isdigit()):  # Check if n is an integer or a digit string (including negatives)
+    #         data.append(int(n))  # Convert to int if it's a string representation of a digit
+    #     elif n in operators:
+    #         if len(data) >= 2:
+    #             y = data.pop()
+    #             x = data.pop()
+    #             result = operators[n](y, x)
+    #             data.append(result)
+    #
+    #
+    # return data[0]  # The result should be the only element left in the stack
 
 
-RPN_Expression = [3,4,"+", 2 ,"*", 1, "+",9,9,"+"]
+    result = []
 
-operators = { '+': lambda y, x: x + y,
-              '-': lambda y, x: x - y,
-              '*': lambda y, x: x * y,
-              '/': lambda y, x: int(x/y) }
-
-
-def rpn_solver(rpn_expression: Any) -> int :
-    data = []
     for n in rpn_expression:
-        if isinstance(n,int):
-            data.append(n)
 
+        if n.lstrip('-').isdigit():
+            result.append(int(n))
         elif n in operators:
-            y = data.pop()
-            x = data.pop()
-            result = operators[n](y,x)
-            data.append(result)
-        else:
-            raise ValueError("Unknown values")
+            if len(result) >= 2:
 
-    return sum(data)
+                x = result.pop()
+                y = result.pop()
+                val = operators[n](x,y)
+                result.append(val)
 
+    return result[0]
+
+# Example usage
 result = rpn_solver(RPN_Expression)
-print(f'result:{result}')
+print(f'result: {result}')  # Output: 22
