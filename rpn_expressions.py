@@ -1,6 +1,6 @@
 from typing import Any, List, Union
 
-RPN_Expression = ["4","13","5","/","+"]
+RPN_Expression = ["4", "13", "5", "/", "+"]
 
 operators = {
     '+': lambda y, x: x + y,
@@ -8,6 +8,7 @@ operators = {
     '*': lambda y, x: x * y,
     '/': lambda y, x: int(x / y)  # Ensure integer division
 }
+
 
 def rpn_solver(rpn_expression: List[Union[int, str]]) -> int:
     # data = []
@@ -24,7 +25,6 @@ def rpn_solver(rpn_expression: List[Union[int, str]]) -> int:
     #
     # return data[0]  # The result should be the only element left in the stack
 
-
     result = []
 
     for n in rpn_expression:
@@ -33,14 +33,36 @@ def rpn_solver(rpn_expression: List[Union[int, str]]) -> int:
             result.append(int(n))
         elif n in operators:
             if len(result) >= 2:
-
                 x = result.pop()
                 y = result.pop()
-                val = operators[n](x,y)
+                val = operators[n](x, y)
                 result.append(val)
 
     return result[0]
 
+
 # Example usage
 result = rpn_solver(RPN_Expression)
 print(f'result: {result}')  # Output: 22
+
+
+def add(a, b):
+    return a + b
+
+def findMaximumProfit(category, price):
+    total_items = len(category)
+    cat_items = {}
+    profit = 0
+
+    for n in range(total_items):
+        cur_pr = price[n]
+        cur_cat = category[n]
+        if cur_cat in cat_items:
+            cat_items[cur_cat] += 1
+        else:
+            cat_items[cur_cat] = 1
+
+        cu_prof = cur_pr * cat_items[cur_cat]
+        profit += cu_prof
+    return profit
+findMaximumProfit([3,1,2,3][2,1,4,4])

@@ -8,7 +8,7 @@
 
 def even_odd(num):
     even_num,odd_num= 0, len(num)-1
-    while even_num<odd_num:
+    while even_num < odd_num:
         #check if its number even yes then just increment and go ahead
         if num[even_num] % 2==0:
             even_num +=1
