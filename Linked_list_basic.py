@@ -18,14 +18,14 @@ class LinkedList(object):
             self.head = new_element
 
     def get_position(self, position):
-        current=self.head
+        current = self.head
 
         if self.head:
-            pos=1
+            pos = 1
 
-            while current and pos<=position:
-                if(pos==position):
-                    return (current)
+            while current and pos <= position:
+                if pos == position:
+                    return current
                 else:
                     current = current.next
 
@@ -39,30 +39,30 @@ class LinkedList(object):
         Assume the first position is "1".
         Inserting at position 3 means between
         the 2nd and 3rd elements."""
-        current=self.head
+        current = self.head
         if self.head:
-            pos=1
-            while current and pos<=position:
-                if(pos==position-1):
-                    new_element.next=current.next
-                    current.next=new_element
+            pos = 1
+            while current and pos <= position:
+                if pos == position - 1:
+                    new_element.next = current.next
+                    current.next = new_element
                 else:
                     current = current.next
 
-                pos=pos+1
+                pos = pos + 1
 
     def delete(self, value):
         """Delete the first node with a given value."""
-        current=self.head
-        previous=None
-        if self.head.value==value:
-            current=self.head.next
-            self.head=current
+        current = self.head
+        previous = None
+        if self.head.value == value:
+            current = self.head.next
+            self.head = current
         else:
-            while current.value!=value:
-               current=current.next
-               previous=current
-            previous.next=current
+            while current.value != value:
+                current = current.next
+                previous = current
+            previous.next = current
 
 
 # Test cases
@@ -79,9 +79,9 @@ ll.append(e3)
 
 # Test get_position
 # Should print 3
-print (ll.head.next.next.value)
+print(ll.head.next.next.value)
 # Should also print 3
-print (ll.get_position(3).value)
+print(ll.get_position(3).value)
 
 # Test insert
 ll.insert(e4, 3)

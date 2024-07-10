@@ -20,3 +20,6 @@ def even_odd(num):
 num=[2,3,8,4,9,5,7,6]
 even_odd(num)
 print(num)
+
+
+
